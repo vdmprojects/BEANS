@@ -14,6 +14,9 @@ To provide an environment for the Aletheia core team to:
   
   
 FEATURE LIST ---------------------------- 
+
+ERC 20?
+
 As presently envisioned, Beancoin will incorporate the following features:
 
   Total max supply of 1,000,000
