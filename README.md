@@ -29,7 +29,7 @@ As presently envisioned, Beancoin will incorporate the following features:
 
   A tapering UBI distribution to always reach max distribution in "5 years"
   
-  
+-----------------------------  
 Initial architecture choices include:
 
   A ledger controlled by an authorized address to whitelist addresses for inclusion (UBI, recieve)
@@ -37,7 +37,7 @@ Initial architecture choices include:
   An address directory service contract controlled by an authorized address to enable contract versioning and retirement
   
 Architecture model:
-
+Ownable.sol
 ERC20 Contract
 CNS (contract name service) contract - all external calls made here? changes made from ownlyOwner adress
 UBI contract
