@@ -13,7 +13,7 @@ To provide an environment for the Aletheia core team to:
   experiement with favored architectural paradigms that are expected to be used in future designs
   
   
-  
+FEATURE LIST ---------------------------- 
 As presently envisioned, Beancoin will incorporate the following features:
 
   Total max supply of 1,000,000
@@ -33,7 +33,6 @@ Initial architecture choices include:
 
   An address directory service contract controlled by an authorized address to enable contract versioning and retirement
   
-  No use of libraries in intital design, incorporation of libraries after security audit
   
   
   
