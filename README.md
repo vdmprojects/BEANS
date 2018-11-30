@@ -36,6 +36,20 @@ Initial architecture choices include:
 
   An address directory service contract controlled by an authorized address to enable contract versioning and retirement
   
+Architecture model:
+
+ERC20 Contract
+CNS (contract name service) contract - all external calls made here? changes made from ownlyOwner adress
+UBI contract
+  UBI distribution
+    Time
+    cap
+    supply
+  Whitelisting
+    from authorized address
+    
+  
+  
   
   
   
