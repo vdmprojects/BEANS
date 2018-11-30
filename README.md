@@ -20,7 +20,7 @@ As presently envisioned, Beancoin will incorporate the following features:
   
   Addresses must be whitelisted?
 
-  UBI of (15k?) beans ("monthly") to each authorized address, up to 15k per address total 
+  UBI of 1250 beans ("monthly") to each authorized address, up to 15k per address total 
 
   Addresses may hold more than 15k, but UBI service  will not be performed on adresses that hold 15k+
 
