@@ -1,4 +1,4 @@
-Beancoin is a toy project with the following goals:
+Beancoin is a toy project based on openzepplin token examples (https://github.com/OpenZeppelin/openzeppelin-solidity) with the following goals:
 
 To create an ERC20 token that represents (unpicked) coffee berries on the farm at Vista Del Mar
 To experiment with economic dynamics vis a vis UBI and token supply, as well as asset tokenization
