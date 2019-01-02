@@ -1,0 +1,61 @@
+Logic for UBI contract
+
+ERC20 Beans
+ERC721 BeanX
+owned
+
+
+!!!!!!!!!! use safemath for all math !!!!!!!!!!!!!!
+
+!!!! see https://solidity.readthedocs.io/en/v0.4.24/common-patterns.html for details on send vs withdraw ... we will have to implement the withdraw pattern instead of send. 
+ 
+ 
+ -----------------------Crappy-ass pseudocode follows
+
+
+contract distribute_beans{
+
+    mapping (uint => uint) ubiDates ; //key is the ERC721 tokenID, value is a date  
+    mapping (address => uint) pendingWithdrawals;
+    
+    function UBI_distribute public (uint token){  
+    
+        if(beanx_address_of(token) == msg.sender){
+        
+            if (ubiDate[token] != 0){
+                int ubiamount = beans_balance(this_contract) / 1800days;
+
+                if (ubiamount > 50) {
+                    ubiamount = 50;
+                }
+
+                ubiBeans = (now - ubiDate) * ubiamount;  //all must be normalized to days!!!!!
+                pendingWithdrawals[msg.sender] += ubiBeans;
+          
+                return message "beancoin distribution success " + ubibeans + " withdrawable for " + msg.sender; 
+                
+            } else {
+                ubiDate[token] = now;
+                return message "beancoin UBI initialized " + now + " for beanx " + token;
+            }
+
+        } else{
+            return message "BeanX token not found at adress" +  msg.sender;
+        }
+
+    }
+
+
+    function UBI_withdraw() public {
+    
+        uint amount = pendingWithdrawals[msg.sender];
+        
+        // Remember to zero the pending refund before
+        // sending to prevent re-entrancy attacks
+        
+        pendingWithdrawals[msg.sender] = 0;
+        
+        transfer_beans(msg.sender, amount);
+    }  
+    
+}
