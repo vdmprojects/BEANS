@@ -40,7 +40,7 @@ contract distribute_beans{
             }
 
         } else{
-            return message "BeanX token not found at adress" +  msg.sender;
+            return message "BeanX token not found at address" +  msg.sender;
         }
 
     }
