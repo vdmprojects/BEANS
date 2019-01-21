@@ -15,8 +15,9 @@ owned
 
 contract distribute_beans{
 
-    mapping (uint => uint) ubiDates ; //key is the ERC721 tokenID, value is a date  
+    mapping (uint => uint) ubiDate ; //key is the ERC721 tokenID, value is a date  
     mapping (address => uint) pendingWithdrawals;
+
     
     function UBI_distribute public (uint token){  
     
@@ -29,18 +30,18 @@ contract distribute_beans{
                     ubiamount = 50;
                 }
 
-                ubiBeans = (now - ubiDate) * ubiamount;  //all must be normalized to days!!!!!
+                ubiBeans = (now - ubiDate) * ubiamount;  //all must be normalized to days!!!!! //FAKE CODE
                 pendingWithdrawals[msg.sender] += ubiBeans;
           
-                return message "beancoin distribution success " + ubibeans + " withdrawable for " + msg.sender; 
+                return message "beancoin distribution success " + ubibeans + " withdrawable for " + msg.sender; //FAKE CODE
                 
             } else {
                 ubiDate[token] = now;
-                return message "beancoin UBI initialized " + now + " for beanx " + token;
+                return message "beancoin UBI initialized " + now + " for beanx " + token; //FAKE CODE
             }
 
         } else {
-            return message "BeanX token not found at address" +  msg.sender;
+            return message "BeanX token not found at address" +  msg.sender; //FAKE CODE
         }
 
     }
@@ -55,7 +56,7 @@ contract distribute_beans{
         
         pendingWithdrawals[msg.sender] = 0;
         
-        transfer_beans(msg.sender, amount);
+        transfer_beans(msg.sender, amount);    //call to a non-extant interface to beans contract //FAKE CODE
     }  
     
 }
