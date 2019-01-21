@@ -21,7 +21,7 @@ contract distribute_beans{
     
     function UBI_distribute public (uint token){  
     
-        if(beanx_address_of(token) == msg.sender){
+        if(beanx_address_of(token) == msg.sender){   //call to a non-extant interface to beans contract //FAKE CODE
         
             if (ubiDate[token] != 0){
                 uint ubiamount = beans_balance(this_contract) / 1800days;
