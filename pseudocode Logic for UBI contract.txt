@@ -1,20 +1,20 @@
-Logic for UBI contract
+//Logic for UBI contract
 
-ERC20 Beans
-ERC721 BeanX
-
-
+//ERC20 Beans
+//ERC721 BeanX
 
 
-!!!!!!!!!!!!!! use safemath for all math !!!!!!!!!!!!!!
 
-!!!! see https://solidity.readthedocs.io/en/v0.4.24/common-patterns.html for details on send vs withdraw ... we will have to implement the withdraw pattern instead of send. 
+
+//!!!!!!!!!!!!!! use safemath for all math !!!!!!!!!!!!!!
+
+//!!!! see https://solidity.readthedocs.io/en/v0.4.24/common-patterns.html for details on send vs withdraw ... we will have to implement the withdraw pattern instead of send. 
  
  
  //-----------------------Crappy-ass pseudocode follows
  
- import "./Ownable.sol";
- import "./Safemath.sol";
+import "./Ownable.sol";
+import "./Safemath.sol";
 
 contract distribute_beans is Ownable {
 
