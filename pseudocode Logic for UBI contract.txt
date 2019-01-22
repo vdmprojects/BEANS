@@ -65,6 +65,26 @@ contract distribute_beans{
         pendingWithdrawals[msg.sender] = 0;
         
         transfer_beans(msg.sender, amount);    //call to a non-extant interface to beans contract //FAKE CODE
+                                                //This contract must hold the beans to distribute?
     }  
+
+    function setBeansAddress public (address contractAddress){
+        modifier onlyOwner() {
+            require(isOwner());
+             _;
+        }
+        require(contractAddress != 0, "Invalid contract address");
+        beansAddress = contractAddress;  
+    }
+
+    function setBeanxAddress public (address contractAddress){
+        modifier onlyOwner() {
+            require(isOwner());
+             _;
+        }
+        require(contractAddress != 0, "Invalid contract address");
+        beanxAddress = contractAddress;  
+    }
+
     
 }
