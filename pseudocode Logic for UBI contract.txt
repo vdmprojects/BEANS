@@ -2,14 +2,8 @@ Logic for UBI contract
 
 ERC20 Beans
 ERC721 BeanX
-//!!!!!!!! owned
-//this contract needs to be owned, and interfaces to BEANS and BEANX contracts referenced to address
-//we need to implement messaging 
 
-address beansAddress = xxxxxx;
-address beanxAddress = xxxxxx;
 
-//!!!!!make functions to set beans / beanx adresses using owned (onlyOwner?)
 
 
 !!!!!!!!!!!!!! use safemath for all math !!!!!!!!!!!!!!
@@ -31,7 +25,9 @@ contract distribute_beans is Ownable {
     mapping (uint256 => uint) ubiDate ; //key is the ERC721 tokenID, value is a date  
     mapping (address => uint) pendingWithdrawals;
 
-    
+    address beansAddress = xxxxxx;   // FAKE!! put in the real addresses
+    address beanxAddress = xxxxxx;
+
     function UBI_distribute public (uint256 tokenId){  
     
         if(ERC721BEANX_ownerOf(tokenId) == msg.sender){   //call to a non-extant interface to beans contract //FAKE CODE
@@ -44,7 +40,7 @@ contract distribute_beans is Ownable {
                 }
 
                 ubiBeans = (now - ubiDate) * ubiamount;  //all must be normalized to days!!!!! //FAKE CODE
-                pendingWithdrawals[msg.sender] += ubiBeans;   //could also be: 
+                pendingWithdrawals[msg.sender].add(ubiBeans);   //FAKE? safemath used like this? could also be:   
                                                               //pendingWithdrawals[ERC721BEANX_ownerOf(tokenId)] += ubiBeans; 
                                                               
                 return message "beancoin distribution success " + ubibeans + " withdrawable for " + msg.sender; //FAKE CODE
@@ -74,12 +70,12 @@ contract distribute_beans is Ownable {
                                                 //This contract must hold the beans to distribute?
     }  
 
-    function setBeansAddress onlyOwner public (address contractAddress){  //order of modifiers?
+    function setBeansAddress (address contractAddress) onlyOwner public {  //order of modifiers?
         require(contractAddress != 0, "Invalid contract address");
         beansAddress = contractAddress;  
     }
 
-    function setBeanxAddress onlyOwner public  (address contractAddress){
+    function setBeanxAddress (address contractAddress) onlyOwner public  {
         require(contractAddress != 0, "Invalid contract address");
         beanxAddress = contractAddress;  
     }
