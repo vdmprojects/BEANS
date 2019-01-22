@@ -33,13 +33,13 @@ contract distribute_beans is Ownable {
         if(ERC721BEANX_ownerOf(tokenId) == msg.sender){   //call to a non-extant interface to beans contract //FAKE CODE
         
             if (ubiDate[tokenId] != 0){
-                uint256 ubiamount = div (balanceOf(this_contract) , 1800);  //FAKE CODE now with safemath!
+                uint256 ubiamount = balanceOf(this_contract).div(1800);  //FAKE CODE now with safemath!
 
                 if (ubiamount > 50) {
                     ubiamount = 50;
                 }
 
-                ubiBeans = (now - ubiDate) * ubiamount;  //all must be normalized to days!!!!! //FAKE CODE
+                ubiBeans = (now - ubiDate) * ubiamount;  //all must be normalized to days!!!!! //FAKE CODE , needs jesus and safemath
                 pendingWithdrawals[msg.sender].add(ubiBeans);   //FAKE? safemath used like this? could also be:   
                                                               //pendingWithdrawals[ERC721BEANX_ownerOf(tokenId)] += ubiBeans; 
                                                               
