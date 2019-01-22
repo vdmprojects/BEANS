@@ -3,6 +3,7 @@ pragma solidity ^0.4.24;
 import "./IERC721.sol";
 import "./IERC721Receiver.sol";
 import "./SafeMath.sol";
+import "./Ownable.sol";
 import "./Address.sol";
 import "./ERC165.sol";
 
