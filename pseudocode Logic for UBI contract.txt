@@ -18,9 +18,11 @@ address beanxAddress = xxxxxx;
  
  
  //-----------------------Crappy-ass pseudocode follows
+ 
+ import "./Ownable.sol";
+ import "./Safemath.sol";
 
-
-contract distribute_beans{
+contract distribute_beans is Ownable {
 
     mapping (uint256 => uint) ubiDate ; //key is the ERC721 tokenID, value is a date  
     mapping (address => uint) pendingWithdrawals;
