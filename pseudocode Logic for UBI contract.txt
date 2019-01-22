@@ -5,7 +5,7 @@ ERC721 BeanX
 owned
 
 
-!!!!!!!!!! use safemath for all math !!!!!!!!!!!!!!
+!!!!!!!!!!!!!! use safemath for all math !!!!!!!!!!!!!!
 
 !!!! see https://solidity.readthedocs.io/en/v0.4.24/common-patterns.html for details on send vs withdraw ... we will have to implement the withdraw pattern instead of send. 
  
