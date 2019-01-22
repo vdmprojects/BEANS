@@ -4,6 +4,7 @@ ERC20 Beans
 ERC721 BeanX
 //!!!!!!!! owned
 //this contract needs to be owned, and interfaces to BEANS and BEANX contracts referenced to address
+//we need to implement messaging 
 
 address beansAddress = xxxxxx;
 address beanxAddress = xxxxxx;
