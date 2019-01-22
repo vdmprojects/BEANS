@@ -24,6 +24,10 @@ address beanxAddress = xxxxxx;
 
 contract distribute_beans is Ownable {
 
+    using SafeMath for uint256;
+    using SafeMath32 for uint32;
+    using SafeMath16 for uint16;
+
     mapping (uint256 => uint) ubiDate ; //key is the ERC721 tokenID, value is a date  
     mapping (address => uint) pendingWithdrawals;
 
@@ -33,7 +37,7 @@ contract distribute_beans is Ownable {
         if(ERC721BEANX_ownerOf(tokenId) == msg.sender){   //call to a non-extant interface to beans contract //FAKE CODE
         
             if (ubiDate[tokenId] != 0){
-                uint ubiamount = beans_balance(this_contract) / 1800days;
+                uint256 ubiamount = div (balanceOf(this_contract) , 1800);  //FAKE CODE now with safemath!
 
                 if (ubiamount > 50) {
                     ubiamount = 50;
@@ -70,20 +74,12 @@ contract distribute_beans is Ownable {
                                                 //This contract must hold the beans to distribute?
     }  
 
-    function setBeansAddress public (address contractAddress){
-        modifier onlyOwner() {
-            require(isOwner());
-             _;
-        }
+    function setBeansAddress onlyOwner public (address contractAddress){  //order of modifiers?
         require(contractAddress != 0, "Invalid contract address");
         beansAddress = contractAddress;  
     }
 
-    function setBeanxAddress public (address contractAddress){
-        modifier onlyOwner() {
-            require(isOwner());
-             _;
-        }
+    function setBeanxAddress onlyOwner public  (address contractAddress){
         require(contractAddress != 0, "Invalid contract address");
         beanxAddress = contractAddress;  
     }
