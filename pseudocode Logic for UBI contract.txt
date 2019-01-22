@@ -2,7 +2,13 @@ Logic for UBI contract
 
 ERC20 Beans
 ERC721 BeanX
-owned
+//!!!!!!!! owned
+//this contract needs to be owned, and interfaces to BEANS and BEANX contracts referenced to address
+
+address beansAddress = xxxxxx;
+address beanxAddress = xxxxxx;
+
+//!!!!!make functions to set beans / beanx adresses using owned (onlyOwner?)
 
 
 !!!!!!!!!! use safemath for all math !!!!!!!!!!!!!!
@@ -10,7 +16,7 @@ owned
 !!!! see https://solidity.readthedocs.io/en/v0.4.24/common-patterns.html for details on send vs withdraw ... we will have to implement the withdraw pattern instead of send. 
  
  
- -----------------------Crappy-ass pseudocode follows
+ //-----------------------Crappy-ass pseudocode follows
 
 
 contract distribute_beans{
