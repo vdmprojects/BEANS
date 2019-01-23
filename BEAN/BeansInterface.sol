@@ -6,8 +6,6 @@ contract BeansInterface {
   }
   function balanceOf(address _owner) constant returns (uint256 balance){
   }
-  function transfer_beans(msg.sender amount) {      //FAKE CODE
-  }
 
 }
 
