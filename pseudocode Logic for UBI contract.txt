@@ -1,3 +1,4 @@
+
 //Logic for UBI contract
 
 //ERC20 Beans
@@ -11,7 +12,9 @@
 //!!!! see https://solidity.readthedocs.io/en/v0.4.24/common-patterns.html for details on send vs withdraw ... we will have to implement the withdraw pattern instead of send. 
  
  
- //-----------------------Crappy-ass pseudocode follows
+  //-----------------------Crappy-ass pseudocode follows
+  
+pragma solidity ^0.4.24;
  
 import "./Ownable.sol";
 import "./Safemath.sol";
@@ -31,7 +34,7 @@ contract distribute_beans is Ownable {
     address beansAddress = xxxxxx;   // FAKE!! put in the real addresses
     address beanxAddress = xxxxxx;
 
-    function UBI_distribute public (uint256 tokenId) {  
+    function UBI_distribute (uint256 tokenId) public {  
     
         if(ERC721BEANX_ownerOf(tokenId) == msg.sender) {   //call to a non-extant interface to beans contract //FAKE CODE
         
