@@ -17,7 +17,7 @@
 pragma solidity ^0.4.24;
  
 import "./Ownable.sol";
-import "./Safemath.sol";
+import "./SafeMath.sol";
 
 contract distribute_beans is Ownable {
 
