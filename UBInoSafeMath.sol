@@ -1,3 +1,4 @@
+pragma solidity ^0.4.24;
 //Logic for UBI contract
 
 //ERC20 Beans
