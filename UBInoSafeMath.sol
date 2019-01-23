@@ -20,7 +20,7 @@ import "./Ownable.sol";
 contract distribute_beans is Ownable {
 
 
-    event Message(string message, address errorAddress);
+    event message(string message, address errorAddress);
 
  //   using SafeMath for uint256;
  //   using SafeMath32 for uint32;
@@ -32,18 +32,21 @@ contract distribute_beans is Ownable {
     address beansAddress = 0;   // FAKE!! put in the real addresses
     address beanxAddress = 0;
 
-    function UBI_distribute public (uint256 tokenId){  
+    function UBI_distribute (uint256 tokenId) public {  
     
-        if(ERC721BEANX_ownerOf(tokenId) == msg.sender){   //call to a non-extant interface to beans contract //FAKE CODE
-        
+    
+ //       if ERC721BEANX_ownerOf(tokenId) == msg.sender{   //call to a non-extant interface to beans contract //FAKE CODE
+          if (1 == 1) {     //debug only
+          
+          
             if (ubiDate[tokenId] != 0){
  //!!               uint256 ubiamount = balanceOf(this_contract) / 1800;  //FAKE CODE now with safemath!
-
+                    uint256 ubiamount = 50;  //Debug Only
                 if (ubiamount > 50) {
                     ubiamount = 50;
                 }
 
-                ubiBeans = (now - ubiDate) * ubiamount;  //all must be normalized to days!!!!! //FAKE CODE , needs jesus and safemath
+                uint256 ubiBeans = (now - ubiDate[tokenId]) * ubiamount;  //all must be normalized to days!!!!! //FAKE CODE , needs jesus and safemath
                 pendingWithdrawals[msg.sender] + ubiBeans;   //FAKE? safemath used like this? could also be:   
                                                               //pendingWithdrawals[ERC721BEANX_ownerOf(tokenId)] += ubiBeans; 
                                                               
