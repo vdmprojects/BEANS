@@ -31,9 +31,9 @@ contract distribute_beans is Ownable {
     address beansAddress = xxxxxx;   // FAKE!! put in the real addresses
     address beanxAddress = xxxxxx;
 
-    function UBI_distribute public (uint256 tokenId){  
+    function UBI_distribute public (uint256 tokenId) {  
     
-        if(ERC721BEANX_ownerOf(tokenId) == msg.sender){   //call to a non-extant interface to beans contract //FAKE CODE
+        if(ERC721BEANX_ownerOf(tokenId) == msg.sender) {   //call to a non-extant interface to beans contract //FAKE CODE
         
             if (ubiDate[tokenId] != 0){
                 uint256 ubiamount = balanceOf(this_contract).div(1800);  //FAKE CODE now with safemath!
