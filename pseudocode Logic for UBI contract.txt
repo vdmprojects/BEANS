@@ -22,7 +22,7 @@ import "./SafeMath.sol";
 contract distribute_beans is Ownable {
 
 
-    event Message(string message, address errorAddress);
+    event message(string message, address errorAddress);
 
     using SafeMath for uint256;
     using SafeMath32 for uint32;
