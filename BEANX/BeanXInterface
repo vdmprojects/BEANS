@@ -1,0 +1,8 @@
+import "./ERC721.sol";
+
+contract BeanXInterface {
+
+function ownerOf(uint256 tokenId) public view returns (address owner);
+
+}
+
