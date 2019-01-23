@@ -72,7 +72,7 @@ contract distribute_beans is Ownable {
         
         pendingWithdrawals[msg.sender] = 0;
         
- //!!       transfer_beans(msg.sender, amount);    //call to a non-extant interface to beans contract //FAKE CODE
+ //!!       transfer(msg.sender, amount);    //call to a non-extant interface to beans contract //FAKE CODE
                                                 //This contract must hold the beans to distribute?
     }  
 
