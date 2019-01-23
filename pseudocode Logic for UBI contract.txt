@@ -31,9 +31,9 @@ contract distribute_beans is Ownable {
     address beansAddress = xxxxxx;   // FAKE!! put in the real addresses
     address beanxAddress = xxxxxx;
 
-    function UBI_distribute public (uint256 tokenId){  
+    function UBI_distribute public (uint256 tokenId) {  
     
-        if(ERC721BEANX_ownerOf(tokenId) == msg.sender){   //call to a non-extant interface to beans contract //FAKE CODE
+        if(ERC721BEANX_ownerOf(tokenId) == msg.sender) {   //call to a non-extant interface to beans contract //FAKE CODE
         
             if (ubiDate[tokenId] != 0){
                 uint256 ubiamount = balanceOf(this_contract).div(1800);  //FAKE CODE now with safemath!
@@ -42,14 +42,17 @@ contract distribute_beans is Ownable {
                     ubiamount = 50;
                 }
 
-                ubiBeans = (now - ubiDate) * ubiamount;  //all must be normalized to days!!!!! //FAKE CODE , needs jesus and safemath
+                ubiBeans = now.div(1 days);
+                ubiBeans = ubiBeans.sub(ubiDate);  // We'll see about this, might still need Jesus.
+                ubiBeans = ubiBeans.mul(ubiamount);
+
                 pendingWithdrawals[msg.sender].add(ubiBeans);   //FAKE? safemath used like this? could also be:   
                                                               //pendingWithdrawals[ERC721BEANX_ownerOf(tokenId)] += ubiBeans; 
-                                                              
+                ubiDate[tokenId] = int ((now).div(1 days));     // see integer usage?                                                         
                 emit message ("beancoin distribution success for ", msg.sender);
                 
             } else {
-                ubiDate[tokenId] = now;
+                ubiDate[tokenId] =  int ((now).div(1 days)); // see integer usage?
                 emit message ("beancoin UBI initialized for ", msg.sender);
             }
 
