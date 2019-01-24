@@ -9,7 +9,7 @@ import "./ERC20Detailed.sol";
  * Note they can later distribute these tokens as they wish using `transfer` and other
  * `ERC20` functions.
  */
-contract SimpleToken is ERC20, ERC20Detailed {
+contract Beans is ERC20, ERC20Detailed {
     uint256 public constant INITIAL_SUPPLY = 1000000 * (10 ** uint256(decimals()));
 
     /**
