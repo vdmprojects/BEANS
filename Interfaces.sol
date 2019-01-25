@@ -23,7 +23,7 @@ contract Interfaces is UBI {
   function transfer(address _to, uint256 _value) internal returns (bool) {  //internal makes this safe???
     bool success;
     success = beansContract.transfer(_to,_value);
-    return success
+    return (success)
   }
 
 //BEANX (ERC721)
@@ -37,10 +37,10 @@ contract Interfaces is UBI {
   function ownerOf(uint256 tokenId) public view returns (address);  //public because why not
     bool owner;
     owner = beanXContract.ownerOf(tokenId);
-    return owner
+    return (owner)
   }
 
-  function whichAdresses() returns(address,address){
-    return beanXContract, beansContract
+  function whichAdresses() public view returns(address,address){
+    return (beanXContract, beansContract)
   }
 }
