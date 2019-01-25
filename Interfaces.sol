@@ -15,26 +15,32 @@ contract Interfaces is UBI {
 //BEANS (ERC20)
   BeansInterface beansContract;
 
-  function setBeansContractAddress(address _address) external onlyOwner {
-    beansContract = BeansInterface(_address);
+  function setBeansAddress (address contractAddress) onlyOwner public {  //order of modifiers?
+    require(contractAddress != 0, "Invalid contract address");
+    beansContract = contractAddress;  
   }
 
   function transfer(address _to, uint256 _value) internal returns (bool) {  //internal makes this safe???
     bool success;
     success = beansContract.transfer(_to,_value);
-    return success
+    return (success)
   }
 
 //BEANX (ERC721)
    BeanXInterface beanXContract;
 
-    function setBeanXContractAddress(address _address) external onlyOwner {
-    beanXContract = BeanXInterface(_address);
+  function setBeanxAddress (address contractAddress) onlyOwner public  {
+    require(contractAddress != 0, "Invalid contract address");
+    beanXContract = contractAddress;  
   }
 
   function ownerOf(uint256 tokenId) public view returns (address);  //public because why not
     bool owner;
     owner = beanXContract.ownerOf(tokenId);
-    return owner
+    return (owner)
+  }
+
+  function whichAdresses() public view returns(address,address){
+    return (beanXContract, beansContract)
   }
 }
