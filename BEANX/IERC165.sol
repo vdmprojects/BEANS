@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.2;
 
 /**
  * @title IERC165
@@ -12,5 +12,4 @@ interface IERC165 {
      * uses less than 30,000 gas.
      */
     function supportsInterface(bytes4 interfaceId) external view returns (bool);
-    
 }
