@@ -39,4 +39,8 @@ contract Interfaces is UBI {
     owner = beanXContract.ownerOf(tokenId);
     return owner
   }
+
+  function whichAdresses() returns(address,address){
+    return beanXContract, beansContract
+  }
 }
