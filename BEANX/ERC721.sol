@@ -1,11 +1,11 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.2;
 
 import "./IERC721.sol";
 import "./IERC721Receiver.sol";
-import "./SafeMath.sol";
-import "./Ownable.sol";
-import "./Address.sol";
-import "./ERC165.sol";
+import "../../math/SafeMath.sol";
+import "../../utils/Address.sol";
+import "../../drafts/Counters.sol";
+import "../../introspection/ERC165.sol";
 
 /**
  * @title ERC721 Non-Fungible Token Standard basic implementation
@@ -14,6 +14,7 @@ import "./ERC165.sol";
 contract ERC721 is ERC165, IERC721 {
     using SafeMath for uint256;
     using Address for address;
+    using Counters for Counters.Counter;
 
     // Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
     // which can be also obtained as `IERC721Receiver(0).onERC721Received.selector`
@@ -26,12 +27,12 @@ contract ERC721 is ERC165, IERC721 {
     mapping (uint256 => address) private _tokenApprovals;
 
     // Mapping from owner to number of owned token
-    mapping (address => uint256) private _ownedTokensCount;
+    mapping (address => Counters.Counter) private _ownedTokensCount;
 
     // Mapping from owner to operator approvals
     mapping (address => mapping (address => bool)) private _operatorApprovals;
 
-    bytes4 private constant _InterfaceId_ERC721 = 0x80ac58cd;
+    bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
     /*
      * 0x80ac58cd ===
      *     bytes4(keccak256('balanceOf(address)')) ^
@@ -47,7 +48,7 @@ contract ERC721 is ERC165, IERC721 {
 
     constructor () public {
         // register the supported interfaces to conform to ERC721 via ERC165
-        _registerInterface(_InterfaceId_ERC721);
+        _registerInterface(_INTERFACE_ID_ERC721);
     }
 
     /**
@@ -57,7 +58,7 @@ contract ERC721 is ERC165, IERC721 {
      */
     function balanceOf(address owner) public view returns (uint256) {
         require(owner != address(0));
-        return _ownedTokensCount[owner];
+        return _ownedTokensCount[owner].current();
     }
 
     /**
@@ -148,7 +149,6 @@ contract ERC721 is ERC165, IERC721 {
      * @param tokenId uint256 ID of the token to be transferred
     */
     function safeTransferFrom(address from, address to, uint256 tokenId) public {
-        // solium-disable-next-line arg-overflow
         safeTransferFrom(from, to, tokenId, "");
     }
 
@@ -164,9 +164,8 @@ contract ERC721 is ERC165, IERC721 {
      * @param tokenId uint256 ID of the token to be transferred
      * @param _data bytes data to send along with a safe transfer check
      */
-    function safeTransferFrom(address from, address to, uint256 tokenId, bytes _data) public {
+    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory _data) public {
         transferFrom(from, to, tokenId);
-        // solium-disable-next-line arg-overflow
         require(_checkOnERC721Received(from, to, tokenId, _data));
     }
 
@@ -189,9 +188,6 @@ contract ERC721 is ERC165, IERC721 {
      */
     function _isApprovedOrOwner(address spender, uint256 tokenId) internal view returns (bool) {
         address owner = ownerOf(tokenId);
-        // Disable solium check because of
-        // https://github.com/duaraghav8/Solium/issues/175
-        // solium-disable-next-line operator-whitespace
         return (spender == owner || getApproved(tokenId) == spender || isApprovedForAll(owner, spender));
     }
 
@@ -206,7 +202,7 @@ contract ERC721 is ERC165, IERC721 {
         require(!_exists(tokenId));
 
         _tokenOwner[tokenId] = to;
-        _ownedTokensCount[to] = _ownedTokensCount[to].add(1);
+        _ownedTokensCount[to].increment();
 
         emit Transfer(address(0), to, tokenId);
     }
@@ -223,12 +219,12 @@ contract ERC721 is ERC165, IERC721 {
 
         _clearApproval(tokenId);
 
-        _ownedTokensCount[owner] = _ownedTokensCount[owner].sub(1);
+        _ownedTokensCount[owner].decrement();
         _tokenOwner[tokenId] = address(0);
 
         emit Transfer(owner, address(0), tokenId);
     }
-    
+
     /**
      * @dev Internal function to burn a specific token
      * Reverts if the token does not exist
@@ -251,8 +247,8 @@ contract ERC721 is ERC165, IERC721 {
 
         _clearApproval(tokenId);
 
-        _ownedTokensCount[from] = _ownedTokensCount[from].sub(1);
-        _ownedTokensCount[to] = _ownedTokensCount[to].add(1);
+        _ownedTokensCount[from].decrement();
+        _ownedTokensCount[to].increment();
 
         _tokenOwner[tokenId] = to;
 
@@ -268,7 +264,9 @@ contract ERC721 is ERC165, IERC721 {
      * @param _data bytes optional data to send along with the call
      * @return whether the call correctly returned the expected magic value
      */
-    function _checkOnERC721Received(address from, address to, uint256 tokenId, bytes _data) internal returns (bool) {
+    function _checkOnERC721Received(address from, address to, uint256 tokenId, bytes memory _data)
+        internal returns (bool)
+    {
         if (!to.isContract()) {
             return true;
         }
