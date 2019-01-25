@@ -37,7 +37,7 @@ contract distribute_beans is Ownable {
           if ERC721BEANX_ownerOf(tokenId) == msg.sender{   //TEST!!!!!!!!!!
           
             if (ubiDate[tokenId] != 0){
-                uint256 ubiamount = balanceOf(this_contract) / 1800;  //FAKE CODE now with safemath! //TEST!!!!!!!!!!
+                uint256 ubiamount = balanceOf(this_contract).div (1800);  //TEST!!!!!!!!!!
                 if (ubiamount > 50) {
                     ubiamount = 50;
                 }
