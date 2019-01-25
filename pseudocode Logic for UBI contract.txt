@@ -7,12 +7,11 @@ pragma solidity ^0.4.24;
 
 
 
-//!!!!!!!!!!!!!! use safemath for all math (but not in this file) !!!!!!!!!!!!!! 
 
 //!!!! see https://solidity.readthedocs.io/en/v0.4.24/common-patterns.html for details on send vs withdraw ... we will have to implement the withdraw pattern instead of send. 
  
  
- //-----------------------Crappy-ass pseudocode follows
+ //-----------------------Almost Decent pseudocode follows
  
 import "./Ownable.sol";
 import "./SafeMath.sol";
@@ -35,20 +34,17 @@ contract distribute_beans is Ownable {
     function UBI_distribute (uint256 tokenId) public {  
     
     
- //       if ERC721BEANX_ownerOf(tokenId) == msg.sender{   //call to a non-extant interface to beans contract //FAKE CODE
-          if (1 == 1) {     //debug only
-          
+          if ERC721BEANX_ownerOf(tokenId) == msg.sender{   //TEST!!!!!!!!!!
           
             if (ubiDate[tokenId] != 0){
- //!!               uint256 ubiamount = balanceOf(this_contract) / 1800;  //FAKE CODE now with safemath!
-                    uint256 ubiamount = 50;  //Debug Only
+                uint256 ubiamount = balanceOf(this_contract) / 1800;  //FAKE CODE now with safemath! //TEST!!!!!!!!!!
                 if (ubiamount > 50) {
                     ubiamount = 50;
                 }
 
-                uint256 ubiBeans = ((now.div(1 days)).sub(ubiDate[tokenId])).mul(ubiamount);  //all must be normalized to days!!!!! //FAKE CODE , needs jesus and safemath
-                pendingWithdrawals[msg.sender].add(ubiBeans);   //FAKE? safemath used like this? could also be:   
-                                                              //pendingWithdrawals[ERC721BEANX_ownerOf(tokenId)] += ubiBeans; 
+                uint256 ubiBeans = ((now.div(1 days)).sub(ubiDate[tokenId])).mul(ubiamount);
+                pendingWithdrawals[msg.sender].add(ubiBeans);   
+                                                               
                 emit message ("beancoin distribution success for ", msg.sender);
                 
             } else {
@@ -72,7 +68,7 @@ contract distribute_beans is Ownable {
         
         pendingWithdrawals[msg.sender] = 0;
         
- //!!       transfer(msg.sender, amount);    //call to a non-extant interface to beans contract //FAKE CODE
+        transfer(msg.sender, amount);    //TEST!!!!!!!!!!
                                                 //This contract must hold the beans to distribute?
     }  
 
