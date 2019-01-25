@@ -28,7 +28,7 @@ contract distribute_beans is Ownable {
     mapping (uint256 => uint) ubiDate ; //key is the ERC721 tokenID, value is a date  
     mapping (address => uint) pendingWithdrawals;
 
-    address beansAddress = 0;   // FAKE!! put in the real addresses
+    address beansAddress = 0xc014aba62a72a6564ddf0223a2520914efffb405;
     address beanxAddress = 0;
 
     function UBI_distribute (uint256 tokenId) public {  
