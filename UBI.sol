@@ -71,17 +71,6 @@ contract distribute_beans is Ownable {
         transfer(msg.sender, amount);    //TEST!!!!!!!!!!
                                                 //This contract must hold the beans to distribute?
     }  
-
-    function setBeansAddress (address contractAddress) onlyOwner public {  //order of modifiers?
-        require(contractAddress != 0, "Invalid contract address");
-        beansContract = contractAddress;  
-    }
-
-    function setBeanxAddress (address contractAddress) onlyOwner public  {
-        require(contractAddress != 0, "Invalid contract address");
-        beanXContract = contractAddress;  
-    }
-
     
 }
 

@@ -15,6 +15,10 @@ contract Interfaces is UBI {
 //BEANS (ERC20)
   BeansInterface beansContract;
 
+  function setBeansAddress (address contractAddress) onlyOwner public {  //order of modifiers?
+    require(contractAddress != 0, "Invalid contract address");
+    beansContract = contractAddress;  
+  }
 
   function transfer(address _to, uint256 _value) internal returns (bool) {  //internal makes this safe???
     bool success;
@@ -24,6 +28,11 @@ contract Interfaces is UBI {
 
 //BEANX (ERC721)
    BeanXInterface beanXContract;
+
+  function setBeanxAddress (address contractAddress) onlyOwner public  {
+    require(contractAddress != 0, "Invalid contract address");
+    beanXContract = contractAddress;  
+  }
 
   function ownerOf(uint256 tokenId) public view returns (address);  //public because why not
     bool owner;
