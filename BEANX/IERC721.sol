@@ -1,7 +1,11 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.2;
 
 import "./IERC165.sol";
 
+/**
+ * @title ERC721 Non-Fungible Token Standard basic interface
+ * @dev see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md
+ */
 contract IERC721 is IERC165 {
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
@@ -19,5 +23,5 @@ contract IERC721 is IERC165 {
     function transferFrom(address from, address to, uint256 tokenId) public;
     function safeTransferFrom(address from, address to, uint256 tokenId) public;
 
-    function safeTransferFrom(address from, address to, uint256 tokenId, bytes data) public;
+    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public;
 }
