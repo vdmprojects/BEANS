@@ -75,7 +75,6 @@ contract distribute_beans is Ownable {
         } else {
             emit message ("BeanX token not found at address ", msg.sender);
         }
-
     }
 
     function UBI_withdraw() public {
@@ -87,5 +86,4 @@ contract distribute_beans is Ownable {
         beansContract.transfer(msg.sender,amount);     //msg.sender.transfer(amount);   ?
        //This contract must hold the beans to distribute
     }  
-    
 }
