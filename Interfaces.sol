@@ -7,7 +7,7 @@ contract BeansInterface {
 }
 
 contract BeanXInterface{
-  function ownerOf(uint256 tokenId) public view returns (address owner);
+  function ownerOf(uint256 tokenId) public view returns (address owner) {
 }
 
 contract Interfaces is UBI {
@@ -37,7 +37,7 @@ contract Interfaces is UBI {
     beanXContract = contractAddress;  
   }
 
-  function ownerOf(uint256 tokenId) public view returns (address);  //public because why not
+  function ownerOf(uint256 tokenId) public view returns (address) { //public because why not
     address owner;
     owner = beanXContract.ownerOf(tokenId);
     return (owner)
