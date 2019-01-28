@@ -7,9 +7,8 @@ contract BeansInterface {
 }
 
 contract BeanXInterface{
-  function ownerOf(uint256 tokenId) public view returns (address owner) {
+  function ownerOf(uint256 tokenId) public view returns (address owner);
 }
-
 contract Interfaces is UBI {
 
   address beansContract =0xc014aba62a72a6564ddf0223a2520914efffb405;
@@ -26,7 +25,7 @@ contract Interfaces is UBI {
   function transfer(address _to, uint256 _value) internal returns (bool) {  //internal makes this safe???
     bool success;
     success = beansContract.transfer(_to,_value);
-    return (success)
+    return (success);
   }
 
 //BEANX (ERC721)
@@ -40,10 +39,10 @@ contract Interfaces is UBI {
   function ownerOf(uint256 tokenId) public view returns (address) { //public because why not
     address owner;
     owner = beanXContract.ownerOf(tokenId);
-    return (owner)
+    return (owner);
   }
 
-  function whichAdresses() public view returns(address,address){
-    return (beanXContract, beansContract)
+  function whichAdresses() public view returns(address,address) {
+    return (beanXContract, beansContract);
   }
 }
