@@ -15,6 +15,7 @@ pragma solidity ^0.5.2;
  
 import "./Ownable.sol";
 import "./SafeMath.sol";
+import "./Interfaces.sol";
 
 contract distribute_beans is Ownable {
 
@@ -28,15 +29,17 @@ contract distribute_beans is Ownable {
     mapping (uint256 => uint) ubiDate ; //key is the ERC721 tokenID, value is a date  
     mapping (address => uint) pendingWithdrawals;
 
-
+    address beansContract; // = address
+    address beanXContract; // = address
 
     function UBI_distribute (uint256 tokenId) public {  
     
-    
-          if (ownerOf(tokenId) == msg.sender){   //TEST!!!!!!!!!!
+          address tokenOwner = ownerOf(tokenId); // DeclarationError: Undeclared identifier. Did you mean "owner"?
+          if (tokenOwner == msg.sender) {   //TEST!!!!!!!!!!
           
             if (ubiDate[tokenId] != 0){
-                uint256 ubiamount = balanceOf(this_contract).div (1800);  //TEST!!!!!!!!!!
+                uint256 ubiamount = 50;  //Super TEST!!!!!!!!!!
+                // uint256 ubiamount = balanceOf(this_contract).div (1800);  //TEST!!!!!!!!!!
                 if (ubiamount > 50) {
                     ubiamount = 50;
                 }
@@ -65,10 +68,8 @@ contract distribute_beans is Ownable {
         // Remember to zero the pending refund before
         // sending to prevent re-entrancy attacks
         pendingWithdrawals[msg.sender] = 0;
-        
-        transfer(msg.sender, amount);    //TEST!!!!!!!!!!
+        msg.sender.transfer(amount);    //TEST!!!!!!!!!!
                                                 //This contract must hold the beans to distribute?
     }  
     
 }
-
