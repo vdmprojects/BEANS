@@ -12,6 +12,9 @@ contract BeanXInterface{
 
 contract Interfaces is UBI {
 
+  address beansContract =0xc014aba62a72a6564ddf0223a2520914efffb405;
+  address beanXContract = 0;
+
 //BEANS (ERC20)
   BeansInterface beansContract;
 
