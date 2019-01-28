@@ -34,7 +34,7 @@ contract distribute_beans is Ownable {
     function UBI_distribute (uint256 tokenId) public {  
     
     
-          if ERC721BEANX_ownerOf(tokenId) == msg.sender{   //TEST!!!!!!!!!!
+          if (ownerOf(tokenId) == msg.sender){   //TEST!!!!!!!!!!
           
             if (ubiDate[tokenId] != 0){
                 uint256 ubiamount = balanceOf(this_contract).div (1800);  //TEST!!!!!!!!!!
