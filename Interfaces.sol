@@ -3,7 +3,7 @@ pragma solidity ^0.4.24;
 import "./UBI.sol";
 
 contract BeansInterface {
-transfer(address _to, uint256 _value) returns (bool success);
+function transfer(address _to, uint256 _value) returns (bool success);
 }
 
 contract BeanXInterface{
@@ -11,6 +11,9 @@ contract BeanXInterface{
 }
 
 contract Interfaces is UBI {
+
+  address beansContract =0xc014aba62a72a6564ddf0223a2520914efffb405;
+  address beanXContract = 0;
 
 //BEANS (ERC20)
   BeansInterface beansContract;
@@ -35,7 +38,7 @@ contract Interfaces is UBI {
   }
 
   function ownerOf(uint256 tokenId) public view returns (address);  //public because why not
-    bool owner;
+    address owner;
     owner = beanXContract.ownerOf(tokenId);
     return (owner)
   }
