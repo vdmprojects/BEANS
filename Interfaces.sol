@@ -3,15 +3,17 @@ pragma solidity ^0.5.2;
 import "./UBI.sol";
 import "./Ownable.sol";
 
-contract BeansInterface {
-  function transfer(address _to, uint256 _value) public returns (bool success);
+interface BeansInterface {
+  function transfer(address, uint256) public returns (bool) {}
 }
 
-contract BeanXInterface{
-  function ownerOf(uint256 tokenId) public view returns (address owner);
+interface BeanXInterface{
+  function ownerOf(uint256) public view returns (address) {}
 }
 
-contract Interfaces is distribute_beans { // is UBI
+
+
+contract Interfaces is distribute_beans {
 
 
 //BEANS (ERC20)
@@ -19,7 +21,7 @@ contract Interfaces is distribute_beans { // is UBI
 
   function setBeansAddress (address contractAddress) public {  //order of modifiers? // onlyOwner
     require(contractAddress != 0, "Invalid contract address");
-    beansContract = contractAddress;  
+    beansContract = BeansInterface(contractAddress);  
   }
 
   function transfer(address _to, uint256 _value) internal returns (bool) {  //internal makes this safe???
@@ -33,7 +35,7 @@ contract Interfaces is distribute_beans { // is UBI
 
   function setBeanxAddress (address contractAddress) public  { // onlyOwner
     require(contractAddress != 0, "Invalid contract address");
-    beanXContract = contractAddress;  
+    beanXContract = BeanXInterface(contractAddress);  
   }
 
   function ownerOf(uint256 tokenId) public view returns (address owner){  //public because why not
