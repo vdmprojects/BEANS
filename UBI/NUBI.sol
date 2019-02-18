@@ -51,41 +51,59 @@ contract distribute_beans is Ownable {
         return (BeanXAddress,BeansAddress);
     }
 
-    function UBI_distribute (uint256 tokenId) public {  
+    function beans_in_contract() public returns (uint256){ //debug only
+        return beansContract.balanceOf(address(this));
+    }
+
+    function UBI_distribute (uint256 tokenId) public returns (uint256,uint256,uint256) {  
+        uint256 ubiBeans;
+        uint256 ubiamount;;
     
           if (beanXContract.ownerOf(tokenId) == msg.sender) {   //TEST!!!!!!!!!!
           
             if (ubiDate[tokenId] != 0){
-                //uint256 ubiamount = 50;  //50 until we get the balance 
-                uint256 ubiamount = beansContract.balanceOf(address(this)).div(1800);  //TEST!!!!!!!!!!
+
+                uint256 ubiamount = beansContract.balanceOf(address(this)).div(1800); 
+                
                 if (ubiamount > 50) {
-                    ubiamount = 50;
+                ubiamount = 50;
+                }
+                if (ubiamount < 1) { ///debug only
+                ubiamount = 1;
                 }
 
-                uint256 ubiBeans = ((now.div(1 days)).sub(ubiDate[tokenId])).mul(ubiamount);
+                ubiBeans = ((now.div(1 days)).sub(ubiDate[tokenId])).mul(ubiamount);
                 pendingWithdrawals[msg.sender].add(ubiBeans);   
                                                                
-                emit message ("beancoin distribution success for ", msg.sender);
+                emit message ("beancoin distribution success", msg.sender);
                 
             } else {
                 ubiDate[tokenId] = now.div(1 days);
-                emit message ("beancoin UBI initialized for ", msg.sender);
+                emit message ("beancoin UBI initialized", msg.sender);
             }
 
         } else {
-            emit message ("BeanX token not found at address ", msg.sender);
+            emit message ("BeanX token not found at address", msg.sender);
         }
-
+        return (ubiamount,ubiBeans,beans_in_contract);
     }
 
-    function UBI_withdraw() public {
+    function UBI_withdraw() public returns (uint) {
     
         uint amount = pendingWithdrawals[msg.sender];
+
+        if (amount > 0) {
+            emit message ("withdrawable beans found");
+        } else {
+            emit message ("no withdrawable beans found");
+        }
         // Remember to zero the pending refund before
         // sending to prevent re-entrancy attacks
         pendingWithdrawals[msg.sender] = 0;
+        
         beansContract.transfer(msg.sender,amount);     //msg.sender.transfer(amount);   ?
        //This contract must hold the beans to distribute
+       return (amount); //debug only
     }  
     
 }
