@@ -73,9 +73,9 @@ contract distribute_beans is Ownable {
                 }
 
                 //ubiBeans = ((now.div(1 days)).sub(ubiDate[tokenId])).mul(ubiamount);
-                ubiBeans = 10; //Debug Only
-                //pendingWithdrawals[msg.sender].add(ubiBeans);   
-                pendingWithdrawals[msg.sender] = 10;
+                ubiBeans = 11; //Debug Only
+                pendingWithdrawals[msg.sender] = pendingWithdrawals[msg.sender].add(ubiBeans);   
+               
                                                                
                 emit message ("beancoin distribution success", msg.sender);
                 
