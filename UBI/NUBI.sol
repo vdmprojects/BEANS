@@ -55,7 +55,7 @@ contract distribute_beans is Ownable {
         return beansContract.balanceOf(address(this));
     }
 
-    function UBI_distribute (uint256 tokenId) public returns (uint256,uint256) {  
+    function UBI_distribute (uint256 tokenId) public returns (uint256, uint256) {  
         uint256 ubiBeans;
         uint256 ubiamount;
     
@@ -74,7 +74,8 @@ contract distribute_beans is Ownable {
 
                 //ubiBeans = ((now.div(1 days)).sub(ubiDate[tokenId])).mul(ubiamount);
                 ubiBeans = 10; //Debug Only
-                pendingWithdrawals[msg.sender].add(ubiBeans);   
+                //pendingWithdrawals[msg.sender].add(ubiBeans);   
+                pendingWithdrawals[msg.sender] = 10;
                                                                
                 emit message ("beancoin distribution success", msg.sender);
                 
