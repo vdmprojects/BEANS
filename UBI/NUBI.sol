@@ -72,7 +72,8 @@ contract distribute_beans is Ownable {
                 ubiamount = 1;
                 }
 
-                ubiBeans = ((now.div(1 days)).sub(ubiDate[tokenId])).mul(ubiamount);
+                //ubiBeans = ((now.div(1 days)).sub(ubiDate[tokenId])).mul(ubiamount);
+                ubiBeans = 10; //Debug Only
                 pendingWithdrawals[msg.sender].add(ubiBeans);   
                                                                
                 emit message ("beancoin distribution success", msg.sender);
@@ -85,7 +86,7 @@ contract distribute_beans is Ownable {
         } else {
             emit message ("BeanX token not found at address", msg.sender);
         }
-        return (ubiamount,ubiBeans,beans_in_contract);
+        return (ubiamount, ubiBeans, beans_in_contract);  //debug only?
     }
 
     function UBI_withdraw() public returns (uint) {
