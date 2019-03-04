@@ -51,19 +51,19 @@ contract distribute_beans is Ownable {
         return (BeanXAddress,BeansAddress);
     }
 
-    function beans_in_contract() public returns (uint256){ //debug only
+    function beans_in_contract() public view returns (uint256){ //debug only
         return beansContract.balanceOf(address(this));
     }
 
-    function UBI_distribute (uint256 tokenId) public returns (uint256,uint256,uint256) {  
+    function UBI_distribute (uint256 tokenId) public returns (uint256,uint256) {  
         uint256 ubiBeans;
-        uint256 ubiamount;;
+        uint256 ubiamount;
     
           if (beanXContract.ownerOf(tokenId) == msg.sender) {   //TEST!!!!!!!!!!
           
             if (ubiDate[tokenId] != 0){
 
-                uint256 ubiamount = beansContract.balanceOf(address(this)).div(1800); 
+                ubiamount = beansContract.balanceOf(address(this)).div(1800); 
                 
                 if (ubiamount > 50) {
                 ubiamount = 50;
@@ -86,7 +86,7 @@ contract distribute_beans is Ownable {
         } else {
             emit message ("BeanX token not found at address", msg.sender);
         }
-        return (ubiamount, ubiBeans, beans_in_contract);  //debug only?
+        return (ubiamount, ubiBeans); //debug only?
     }
 
     function UBI_withdraw() public returns (uint) {
@@ -94,9 +94,9 @@ contract distribute_beans is Ownable {
         uint amount = pendingWithdrawals[msg.sender];
 
         if (amount > 0) {
-            emit message ("withdrawable beans found");
+            emit message ("withdrawable beans found", msg.sender);
         } else {
-            emit message ("no withdrawable beans found");
+            emit message ("no withdrawable beans found", msg.sender);
         }
         // Remember to zero the pending refund before
         // sending to prevent re-entrancy attacks
