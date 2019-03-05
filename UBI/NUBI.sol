@@ -71,13 +71,13 @@ contract distribute_beans is Ownable {
                 ubiBeans = ((now.div(1 days)).sub(ubiDate[tokenId])).mul(ubiamount);
 
                 pendingWithdrawals[msg.sender] = pendingWithdrawals[msg.sender].add(ubiBeans);                                               
-                emit message ("beancoin distribution success", msg.sender);
+                emit message ("Beancoin distribution success.", msg.sender);
 
                 ubiDate[tokenId] = now.div(1 days);
 
             } else {
                 ubiDate[tokenId] = now.div(1 days);
-                emit message ("beancoin UBI initialized", msg.sender);
+                emit message ("Beancoin UBI initialized.", msg.sender);
             }
 
         } else {
@@ -91,9 +91,9 @@ contract distribute_beans is Ownable {
         uint amount = pendingWithdrawals[msg.sender];
 
         if (amount > 0) {
-            emit message ("withdrawable beans found", msg.sender);
+            emit message ("Withdrawable beans found.", msg.sender);
         } else {
-            emit message ("no withdrawable beans found", msg.sender);
+            emit message ("No withdrawable beans found.", msg.sender);
         }
         // Remember to zero the pending refund before
         // sending to prevent re-entrancy attacks
