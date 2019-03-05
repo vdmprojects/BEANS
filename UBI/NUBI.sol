@@ -56,27 +56,25 @@ contract distribute_beans is Ownable {
     }
 
     function UBI_distribute (uint256 tokenId) public returns (uint256, uint256) {  
+
         uint256 ubiBeans;
-        uint256 ubiamount;
-    
+        uint256 ubiamount = beansContract.balanceOf(address(this)).div(1800); 
+
+         if (ubiamount > 50) {
+                ubiamount = 50;
+          }
+
           if (beanXContract.ownerOf(tokenId) == msg.sender) {   //TEST!!!!!!!!!!
           
             if (ubiDate[tokenId] != 0){
-
-                ubiamount = beansContract.balanceOf(address(this)).div(1800); 
                 
-                if (ubiamount > 50) {
-                ubiamount = 50;
-                }
-                if (ubiamount < 1) { ///debug only
-                ubiamount = 1;
-                }
-
                 ubiBeans = ((now.div(1 days)).sub(ubiDate[tokenId])).mul(ubiamount);
-                pendingWithdrawals[msg.sender] = pendingWithdrawals[msg.sender].add(ubiBeans);
-                                                               
+
+                pendingWithdrawals[msg.sender] = pendingWithdrawals[msg.sender].add(ubiBeans);                                               
                 emit message ("beancoin distribution success", msg.sender);
-                
+
+                ubiDate[tokenId] = now.div(1 days);
+
             } else {
                 ubiDate[tokenId] = now.div(1 days);
                 emit message ("beancoin UBI initialized", msg.sender);
@@ -85,6 +83,7 @@ contract distribute_beans is Ownable {
         } else {
             emit message ("BeanX token not found at address", msg.sender);
         }
+        return(ubiamount , ubiBeans);
     }
 
     function UBI_withdraw() public returns (uint) {
