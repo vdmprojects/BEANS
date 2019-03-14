@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.2;
 
 import "./ERC20.sol";
 import "./ERC20Detailed.sol";
@@ -10,7 +10,8 @@ import "./ERC20Detailed.sol";
  * `ERC20` functions.
  */
 contract Beans is ERC20, ERC20Detailed {
-    uint256 public constant INITIAL_SUPPLY = 1000000 * (10 ** uint256(decimals()));
+    uint8 public constant DECIMALS = 0;
+    uint256 public constant INITIAL_SUPPLY = 10000 * (10 ** uint256(DECIMALS));
 
     /**
      * @dev Constructor that gives msg.sender all of existing tokens.
@@ -19,3 +20,4 @@ contract Beans is ERC20, ERC20Detailed {
         _mint(msg.sender, INITIAL_SUPPLY);
     }
 }
+
