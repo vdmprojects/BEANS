@@ -7,210 +7,29 @@ To our testers:
 
 On the Ropstien network:
 
-BNS: 0xc0dd9a9cbee1ff9228b0d1977c4e21f345a3d0aa  (18 decimals)
+BNS:  0xc0dd9a9cbee1ff9228b0d1977c4e21f345a3d0aa (18 decimals)
 
 BNSX: 0x7fe7c260afdcb10a794844da206c624cc056805c
 
-NUBI: 0x235220535e2445ba415642a92d27b5f874709b91
+NUBI:  0x235220535e2445ba415642a92d27b5f874709b91
 
-Get a beansx token sent to your address (centrally issued)
+STEP1: Get a beansx token sent to your address.
 
-call UBI_distribute with your BEANSX tokenID
+STEP2: Using the NUBI ABI, call UBI_distribute with your BEANSX tokenID
 
 Your bean distribution time will now be initialized (check the transaction logs, as text)
 
-Come back in a day and call UBI_distribute again....this time you'll get some beans.
+STEP3: Come back in a day or so and call UBI_distribute again....this time you'll get some beans.
 
-Call UBI_withdraw, and if you have withdrawable beans they will be sent the calling address (must be the same address that called UBI_distribute)
+STEP4: Call UBI_withdraw, and if you have withdrawable beans they will be sent the calling address (must be the same address that called UBI_distribute)
+
+If you come to Vista del mar, I'll honor your beans (even fake ropstien beans) as delicous locally grown coffee
 
 Unfortunately, you'll have to interact directly with the contract using something like MEW or another tool. Ill post the NUBI If anyone has good suggestions on generating a quick WEB3 interface, we're all ears!
 
 Here is the NUBI ABI:
 
-[
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "contractAddress",
-				"type": "address"
-			}
-		],
-		"name": "setBeanxAddress",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "whichAdresses",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			},
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "UBI_distribute",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "UBI_withdraw",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "renounceOwnership",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "isOwner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "contractAddress",
-				"type": "address"
-			}
-		],
-		"name": "setBeansAddress",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "beans_in_contract",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "message",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "errorAddress",
-				"type": "address"
-			}
-		],
-		"name": "message",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "previousOwner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "OwnershipTransferred",
-		"type": "event"
-	}
-]
+[ { "constant": false, "inputs": [ { "name": "contractAddress", "type": "address" } ], "name": "setBeanxAddress", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "whichAdresses", "outputs": [ { "name": "", "type": "address" }, { "name": "", "type": "address" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "tokenId", "type": "uint256" } ], "name": "UBI_distribute", "outputs": [ { "name": "", "type": "uint256" }, { "name": "", "type": "uint256" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "UBI_withdraw", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "renounceOwnership", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "owner", "outputs": [ { "name": "", "type": "address" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isOwner", "outputs": [ { "name": "", "type": "bool" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "contractAddress", "type": "address" } ], "name": "setBeansAddress", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "beans_in_contract", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "newOwner", "type": "address" } ], "name": "transferOwnership", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [ { "indexed": false, "name": "message", "type": "string" }, { "indexed": false, "name": "errorAddress", "type": "address" } ], "name": "message", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "previousOwner", "type": "address" }, { "indexed": true, "name": "newOwner", "type": "address" } ], "name": "OwnershipTransferred", "type": "event" } ]
 
 Goals: To provide an environment for the Aletheia core team to:
 
