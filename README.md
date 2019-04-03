@@ -5,7 +5,7 @@ To experiment with economic dynamics vis a vis UBI and token supply, as well as 
 
 To our testers:
 
-On the Ropstien network:
+On the Ropsten network:
 
 BNS:  0xc0dd9a9cbee1ff9228b0d1977c4e21f345a3d0aa (18 decimals)
 
@@ -23,7 +23,7 @@ STEP3: Come back in a day or so and call UBI_distribute again....this time you'l
 
 STEP4: Call UBI_withdraw, and if you have withdrawable beans they will be sent the calling address (must be the same address that called UBI_distribute)
 
-If you come to Vista del mar, I'll honor your beans (even fake ropstien beans) as delicous locally grown coffee
+If you come to Vista del mar, I'll honor your beans (even fake ropsten beans) as delicous locally grown coffee
 
 Unfortunately, you'll have to interact directly with the contract using something like MEW or another tool. Ill post the NUBI If anyone has good suggestions on generating a quick WEB3 interface, we're all ears!
 
