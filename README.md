@@ -19,34 +19,41 @@ ERC 20?
 
 As presently envisioned, Beancoin will incorporate the following features:
 
-  Total max supply of 1,000,000
+  Total max supply of 1,000,000 (decimal 18)
   
-  Addresses must be whitelisted?
+  Addresses whitelisted for UBI (universal Bean Income) distribution via posessiton of a (centrally issued) ERC721 beansX token
 
-  UBI of 1250 beans ("monthly") to each authorized address, up to 15k per address total 
-
-  Addresses may hold more than 15k, but UBI service  will not be performed on adresses that hold 15k+
-
+  UBI of 1250? beans ("monthly") to each authorized address
+  
   A tapering UBI distribution to always reach max distribution in "5 years"
   
 -----------------------------  
 Initial architecture choices include:
 
-  A ledger controlled by an authorized address to whitelist addresses for inclusion (UBI, recieve)
+  A ledger controlled by an authorized address to whitelist addresses for inclusion (UBI, recieve) - BEANSX ERC721 token
 
-  An address directory service contract controlled by an authorized address to enable contract versioning and retirement
+  An address directory service contract controlled by an authorized address to enable contract versioning and retirement (not implemented)
   
-Architecture model:
-Ownable.sol
-ERC20 Contract
-CNS (contract name service) contract - all external calls made here? changes made from ownlyOwner adress
-UBI contract
-  UBI distribution
-    Time
-    cap
-    supply
-  Whitelisting
-    from authorized address
+
+    
+    
+NOTE: THIS IS AN EXPERIEMENTAL AND PROBABLY FLAWED TOY. DO NOT USE TO CREATE REAL THINGS.    
+    
+    
+To deploy, deploy the contents of the folders BEANS, BEANSX, and NUBI.SOL in UBI. 
+NUBI is the UBI engine, and enables beans distribution to BEANSX holders.
+
+Works like this:
+
+Get a beansx token sent to your address (centrally issued)
+
+call UBI_distribute with your BEANSX tokenID
+
+Your bean ditribution time will now be initialized (check the transaction logs, as text)
+
+Come back in a day and call UBI_distribute again....this time youll get some beans.
+
+Call UBI_withdraw, and if you have withdrawable beans they will be sent the calling address (must be the same address that called UBI_distribute)
     
   
   
