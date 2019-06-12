@@ -1,3 +1,32 @@
+Central Concept:
+
+Combining ERC20 and ERC721 tokens to create a new class of “registered” token with additional contract managable features
+
+By combining ERC20 fungible tokens with ERC721 digital assets, we are able to create new functionality for “registered” tokens. Minor modifications to the boilerplate ERC20 and ERC721 contracts allow one or more ERC20 tokens to be “paired” with one or more ERC721 “license” tokens.
+
+This enables added contractually controlled functionality, by requiring an ERC721 license token to enable certain contract features, or constraining the functionality of license tokens based on holdings of
+ERC20 fungible tokens. 
+
+This can be useful in many circumstances, with some examples following:
+
+We first used this concept with Beancoin (BNS)  ( https://github.com/vdmprojects/BEANS ) to control the distribution of the Universal Basic Income. In this example, The BNX token confers a contractually provisioned capability on the bearer to receive the BNS Universal Basic Income (UBI) distribution.
+
+To receive ERC20 BNS from the NUBI contract, a user must hold a BeansX ERC721 token (BNX), with a unique registration ID. 
+
+The user calls the ‘UBI_distribute’ function, passing her unique BNX registration ID. 
+
+If the contract sees that the calling address holds the referenced BNX token, it responds by either registering that BNX token ID for UBI distribution and starting the UBI timer for that ID, or if the ID has previously been registered, allocating BNS to the calling address (and BNX token-holder) in proportion to the time elapsed since the last distribution to that BNX ID. Allocated BNS may then be withdrawn by calling the ‘UBI_withdraw’ function from the address the BNS were allocated to.
+
+This simple functionality eliminates the possibility of users allocating UBI to multiple addresses by requiring the unique BNX ‘license’ to enable the UBI distribution. In this way, the license to receive UBI can also be moved to other addresses, exchanged, or traded subsequent to the original minting of each BNX license.
+
+From this example, we can go on to imagine a asset system, for example, that applies a “tax” on transactions based on the holdings of the payer. The obvious attack on this is to distribute fractional holdings across various addresses, thereby paying a lower tax than the actual total holdings might otherwise incur.
+
+Such a system could be made resistant to such address spoofing using a similar 2 token system as in the beancoin example. In this case, we would disallow ERC20 fungible transfers to or from addresses that did not posses an ERC721 ‘license’ token, and also disallow the license token from being transferred to an address that already held the paired ERC20 asset.
+
+With such systems combining two or more fungible (ERC20) and unique (ERC721) token types, robust contractual systems can be constructed which have their functionality defined by balances and keys, or combinations thereof. This can enable decentralized governance of asset disposition, and help to enforce contractual requirements without the use of external oracles or services.
+
+
+
 Beancoin is a toy project based on openzepplin token examples (https://github.com/OpenZeppelin/openzeppelin-solidity) with the following goals:
 
 To create an ERC20 token that represents (unpicked) coffee berries on the farm at Vista Del Mar
